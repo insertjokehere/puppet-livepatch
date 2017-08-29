@@ -2,6 +2,8 @@ class livepatch($ensure='disabled', $token=undef) {
 
   $lp_bin = '/snap/bin/canonical-livepatch'
 
+  ensure_packages(['snapd'], {'ensure' => 'present'})
+
   # If livepatch is installed before an up-to-date snapd is installed, then livepatch
   # needs to be reinstalled before it will work
   exec { 'remove-old-livepatch':
